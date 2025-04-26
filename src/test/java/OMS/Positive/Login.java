@@ -1,6 +1,7 @@
 package OMS.Positive;
 
 import org.openqa.selenium.Alert;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.internal.junit.ExactComparisonCriteria;
@@ -35,7 +36,10 @@ public class Login extends BaseTest {
 
         webSteps.waiting();
 
+        boolean url = driver.getCurrentUrl().contains("storemate");
+        Assert.assertTrue(url);
 
+        ExtentReportManager.testSteps("Successfully logged into the system");
 
         Thread.sleep(5000);
     }
