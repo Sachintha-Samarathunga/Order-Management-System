@@ -1,0 +1,5 @@
+test-output
+test-output/ExtentReport.html
+test-output/extentAdapterReport/extentAdapterHTML.html
+src/main/resources/config.properties
+*.properties
