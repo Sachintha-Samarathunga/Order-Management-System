@@ -47,21 +47,9 @@ public class BaseTest {
             browser = getUserBrowserInput();
         }
 
-        ChromeOptions options = new ChromeOptions();
-
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-        prefs.put("safebrowsing.enabled", false); // <--- Important: Turn off Safe Browsing
-        prefs.put("safebrowsing.disable_download_protection", true); // Optional
-        options.setExperimentalOption("prefs", prefs);
-
-        options.addArguments("--disable-features=PasswordLeakDetection,PasswordManagerEnabled,SafeBrowsingEnhancedProtection");
-        options.addArguments("--disable-blink-features=AutomationControlled");
-
         switch (browser.toLowerCase()) {
             case "chrome":
-                driver = new ChromeDriver(options);
+                driver = new ChromeDriver();
                 break;
             case "firefox":
                 driver = new FirefoxDriver();

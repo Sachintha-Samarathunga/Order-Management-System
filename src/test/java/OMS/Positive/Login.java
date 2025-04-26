@@ -1,10 +1,8 @@
 package OMS.Positive;
 
-import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.internal.junit.ExactComparisonCriteria;
 import utils.BaseTest;
 import utils.ExtentReportManager;
 

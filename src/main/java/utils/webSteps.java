@@ -22,6 +22,7 @@ import static dataProviders.repositoryFileReader.findElementRepo;
 
 public class webSteps {
     protected static WebDriver driver;
+    private final String businessName;
     private final String email;
     private final String password;
 
@@ -31,15 +32,19 @@ public class webSteps {
 
         // Load email and password from properties file
         Properties properties = PropertyLoader.loadProperties("src/main/resources/dataset.properties");
+        this.businessName = properties.getProperty("business");
         this.email = properties.getProperty("email");
         this.password = properties.getProperty("password");
     }
 
     public void login() throws InterruptedException {
         waiting();
-        type(email, "emailField");
-        type(password, "passwordField");
-        click("loginButton");
+        type(businessName, "businessName");
+        type(email, "email");
+        type(password, "password");
+        click("loginBtn");
+
+        ExtentReportManager.testSteps("Successfully logged into the system");
         waiting();
     }
 
