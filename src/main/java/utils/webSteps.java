@@ -251,14 +251,18 @@ public class webSteps {
 
     public void selectFromDropdown(){
         WebElement dropdown = driver.findElement(By.xpath("//div[@class='overflow-y-auto max-h-60']"));
-
         List<WebElement> childDivs = dropdown.findElements(By.xpath("./div"));
 
-        // Generate a random index
         Random random = new Random();
         int randomIndex = random.nextInt(childDivs.size());
 
-// Click on the randomly selected option
         childDivs.get(randomIndex).click();
+
+//        WebElement parentDiv = driver.findElement(By.xpath("//div[@class='overflow-y-auto max-h-60']"));
+//        List<WebElement> childDivs = parentDiv.findElements(By.tagName("div"));
+//
+//        for (WebElement child : childDivs) {
+//            System.out.println(child.getText());
+//        }
     }
 }
