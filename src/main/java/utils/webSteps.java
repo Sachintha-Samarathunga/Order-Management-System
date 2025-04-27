@@ -12,6 +12,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -88,7 +89,6 @@ public class webSteps {
     }
 
 
-
     // Common method to click an element
     public void click(String locator) throws InterruptedException {
         By xpath = constructElement(findElementRepo(locator));
@@ -96,57 +96,6 @@ public class webSteps {
         button.click();
         waiting();
     }
-
-    // to click on any point of the main map
-    public void clickOnPointOfMap(int x,int y) throws InterruptedException {
-        By xpath = constructElement(findElementRepo("Main_Map"));
-        WebElement map = driver.findElement(xpath);
-        Actions actions = new Actions(driver);
-
-        actions.moveToElement(map, x, y).click().perform();
-        waiting();
-    }
-
-    public void zoomInMap() throws InterruptedException {
-        By xpath = constructElement(findElementRepo("Main_Map"));
-        WebElement map = driver.findElement(xpath);
-
-        Actions actions = new Actions(driver);
-        for (int i = 0; i < 3; i++) {  // Adjust zoom level (increase/decrease iterations)
-            actions.moveToElement(map).sendKeys(Keys.chord(Keys.CONTROL, Keys.ADD)).perform();
-            Thread.sleep(1000);
-        }
-        waiting();
-        waiting();
-    }
-
-    public void zoomMap() throws InterruptedException {
-        By xpath = constructElement(findElementRepo("Main_Map"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        // Loop to simulate smooth zoom with JavaScript wheel events
-        for (int i = 0; i < 2; i++) {
-            WebElement map = driver.findElement(xpath); // ✅ Use your actual XPath here
-
-            js.executeScript(
-                    "arguments[0].dispatchEvent(new WheelEvent('wheel', { deltaY: -20, bubbles: true }));",
-                    map
-            );
-
-            Thread.sleep(500); // Delay between scrolls for smoothness
-        }
-    }
-
-    public void dragTheMap(int x, int y) throws InterruptedException {
-        By xpath = constructElement(findElementRepo("Main_Map"));
-        WebElement map = driver.findElement(xpath);
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(map, x, y).click().perform();
-        waiting();
-        waiting();
-    }
-
 
     // Common method to get text from an element
     public String getText(String locator) {
@@ -204,47 +153,6 @@ public class webSteps {
         waiting();
     }
 
-    public void MoveMap(String locator) throws InterruptedException {
-        By xpath = constructElement(findElementRepo(locator));
-        WebElement map = driver.findElement(xpath);
-
-        Actions actions = new Actions(driver);
-
-        actions.clickAndHold(map)
-                .moveByOffset(-200, 0) // Move left (adjust offset based on need)
-                .moveByOffset(0, -150) // Move up
-                .release()
-                .perform();
-
-
-        waiting();
-
-        actions.moveToElement(map).scrollByAmount(0, -500).perform();
-
-        waiting();
-    }
-
-    public void dragMap() throws AWTException, InterruptedException {
-        Robot robot = new Robot();
-
-        robot.mouseMove(1350,350);
-        waiting();
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-
-        for (int i = 0; i < 10; i++) {
-            robot.mouseMove(1350 - (i * 40), 250 + (i * 20));
-            Thread.sleep(50);
-        }
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        waiting();
-    }
-
-    public void scrollMouse(int x) throws AWTException {
-        Robot robot = new Robot();
-        robot.mouseWheel(5);
-    }
-
-
     // Method for wait until an element to be clickable
     public void waitUntilElementToBeClickable(String locator){
         By xpath = constructElement(findElementRepo(locator));
@@ -301,36 +209,6 @@ public class webSteps {
         waiting();
     }
 
-//    // Common method to upload a file
-//    public void uploadFile(String filePath, String locator) throws InterruptedException {
-//
-//        click(locator);
-//
-//        String data = "C:\\Users\\Sachintha\\Videos\\"+filePath;
-//        StringSelection selection = new StringSelection(data);
-//
-//        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-//
-//        try {
-//            waiting();
-//            Robot robot = new Robot();
-//            robot.keyPress(KeyEvent.VK_CONTROL);
-//            robot.keyPress(KeyEvent.VK_V);
-//            robot.keyRelease(KeyEvent.VK_V);
-//            robot.keyRelease(KeyEvent.VK_CONTROL);
-//
-//            waiting();
-//
-//            robot.keyPress(KeyEvent.VK_ENTER);
-//            robot.keyRelease(KeyEvent.VK_ENTER);
-//
-//            waiting();
-//
-//        } catch (AWTException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     // Common method to upload a file from resources folder
     public void uploadFile(String fileName, String locator) throws InterruptedException {
         click(locator);
@@ -371,5 +249,16 @@ public class webSteps {
         }
     }
 
+    public void selectFromDropdown(){
+        WebElement dropdown = driver.findElement(By.xpath("//div[@class='overflow-y-auto max-h-60']"));
 
+        List<WebElement> childDivs = dropdown.findElements(By.xpath("./div"));
+
+        // Generate a random index
+        Random random = new Random();
+        int randomIndex = random.nextInt(childDivs.size());
+
+// Click on the randomly selected option
+        childDivs.get(randomIndex).click();
+    }
 }

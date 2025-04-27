@@ -35,17 +35,11 @@ public class User extends BaseTest {
 
         webSteps.click("addNewUserBtn");
 
+        
         webSteps.click("userRoleField");
+        webSteps.selectFromDropdown();
 
-        WebElement parentDiv = driver.findElement(By.xpath("//div[@class='overflow-y-auto max-h-60']"));
-
-// Then, find all child divs inside it
-        List<WebElement> childDivs = parentDiv.findElements(By.tagName("div"));
-
-// Now you can loop through childDivs if you want
-        for (WebElement child : childDivs) {
-            System.out.println(child.getText());
-        }
+        webSteps.waiting();
     }
 
 }
