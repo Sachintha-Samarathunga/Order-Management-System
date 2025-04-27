@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -36,12 +37,15 @@ public class User extends BaseTest {
 
         webSteps.click("userRoleField");
 
-        WebElement element = driver.findElement(By.xpath("//div[@class='overflow-y-auto max-h-60']"));
+        WebElement parentDiv = driver.findElement(By.xpath("//div[@class='overflow-y-auto max-h-60']"));
 
-        List<WebElement> totalLinks = element.findElements(By.tagName("label"));
-        int totalLinkSize = totalLinks.size();
-        System.out.println("Total Links by Way1 : " + totalLinkSize);
+// Then, find all child divs inside it
+        List<WebElement> childDivs = parentDiv.findElements(By.tagName("div"));
 
+// Now you can loop through childDivs if you want
+        for (WebElement child : childDivs) {
+            System.out.println(child.getText());
+        }
     }
 
 }
