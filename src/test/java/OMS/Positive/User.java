@@ -19,8 +19,8 @@ public class User extends BaseTest {
     public void setUp() throws IOException, InterruptedException {
         loadUrl();
         webSteps.login();
-        webSteps.click("sideMenuUser");
-        webSteps.click("sideMenuUserList");
+        webSteps.click("SideMenu User Tab");
+        webSteps.click("SideMenu UserList Tab");
     }
 
     @Test
@@ -31,22 +31,22 @@ public class User extends BaseTest {
         ExtentReportManager.startTest("User Management", "<b>Test Cases for User Management</b>");
         ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC001: Create User with Valid Credentials</b>");
 
-        webSteps.click("addNewUserBtn");
+        webSteps.click("AddNewUser Button");
 
-        webSteps.type("Amal", "userNameField");
+        webSteps.type("Amal", "Name Field");
         ExtentReportManager.testSteps("Entered name");
-        webSteps.click("userRoleField");
+        webSteps.click("Role Field");
         webSteps.selectFromDropdown();
         ExtentReportManager.testSteps("Selected user role");
-        webSteps.type("712345678", "userPhoneField");
+        webSteps.type("712345678", "Contact Number Field");
         ExtentReportManager.testSteps("Entered mobile number");
-        webSteps.type(this.emailAddress, "userEmailField");
+        webSteps.type(this.emailAddress, "Email Address Field");
         ExtentReportManager.testSteps("Entered email address");
-        webSteps.type("AmalaX@%234", "passwordField");
+        webSteps.type("AmalaX@%234", "Password Field");
         ExtentReportManager.testSteps("Set the password");
-        webSteps.type("AmalaX@%234", "confirmPasswordField");
+        webSteps.type("AmalaX@%234", "Confirm Password Field");
         ExtentReportManager.testSteps("Confirmed password");
-        webSteps.type("NO: 523, Ja-ela road, Gampaha", "addressField");
+        webSteps.type("NO: 523, Ja-ela road, Gampaha", "Address Field");
         ExtentReportManager.testSteps("Entered address");
 
         webSteps.waiting();
@@ -64,9 +64,7 @@ public class User extends BaseTest {
 
     @Test(dataProvider = "userSearchData", priority = 2)
     public void searchUser(String type, String searchInput) throws InterruptedException {
-        if(i==3){
-            i+=1;
-        }
+        if(i==3){ i+=1;};
         ExtentReportManager.startTest("User Management", "<b>Test Cases for User Management</b>");
         ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC001: Search User with " + type + "</b>");
 

@@ -40,10 +40,10 @@ public class webSteps {
 
     public void login() throws InterruptedException {
         waiting();
-        type(businessName, "businessName");
-        type(email, "email");
-        type(password, "password");
-        click("loginBtn");
+        type(businessName, "Business Name");
+        type(email, "Email");
+        type(password, "Password");
+        click("Login Button");
 
         ExtentReportManager.testSteps("Successfully logged into the system");
         waiting();
