@@ -38,7 +38,7 @@ public class User extends BaseTest {
         webSteps.click("Role Field");
         webSteps.selectFromDropdown();
         ExtentReportManager.testSteps("Selected user role");
-        webSteps.type("712345678", "Contact Number Field");
+//        webSteps.type("712345678", "Contact Number Field");
         ExtentReportManager.testSteps("Entered mobile number");
         webSteps.type(this.emailAddress, "Email Address Field");
         ExtentReportManager.testSteps("Entered email address");
