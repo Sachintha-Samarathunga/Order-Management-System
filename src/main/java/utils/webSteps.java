@@ -65,6 +65,12 @@ public class webSteps {
         waiting();
     }
 
+    public void passValue(String text, String locator){
+        By xpath = constructElement(findElementRepo(locator));
+        driver.findElement(xpath).sendKeys(text);
+    }
+
+
     public void dismissAlert(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.alertIsPresent());
@@ -94,6 +100,8 @@ public class webSteps {
         By xpath = constructElement(findElementRepo(locator));
         WebElement button =  driver.findElement(xpath);
         button.click();
+
+        ExtentReportManager.testSteps("Clicked " + locator);
         waiting();
     }
 
@@ -264,5 +272,10 @@ public class webSteps {
 //        for (WebElement child : childDivs) {
 //            System.out.println(child.getText());
 //        }
+    }
+
+    public WebElement searchElement(int row,int col){
+        WebElement element = driver.findElement(By.xpath("//tr["+row+"]/td["+col+"]"));
+        return  element;
     }
 }

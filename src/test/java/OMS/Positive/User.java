@@ -1,6 +1,9 @@
 package OMS.Positive;
 
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.BaseTest;
 import utils.ExtentReportManager;
@@ -10,11 +13,14 @@ import java.io.IOException;
 public class User extends BaseTest {
 
     private String emailAddress;
+    int i=1;
 
     @BeforeMethod
     public void setUp() throws IOException, InterruptedException {
         loadUrl();
         webSteps.login();
+        webSteps.click("sideMenuUser");
+        webSteps.click("sideMenuUserList");
     }
 
     @Test
@@ -24,9 +30,6 @@ public class User extends BaseTest {
 
         ExtentReportManager.startTest("User Management", "<b>Test Cases for User Management</b>");
         ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC001: Create User with Valid Credentials</b>");
-
-        webSteps.click("sideMenuUser");
-        webSteps.click("sideMenuUserList");
 
         webSteps.click("addNewUserBtn");
 
@@ -47,6 +50,32 @@ public class User extends BaseTest {
         ExtentReportManager.testSteps("Entered address");
 
         webSteps.waiting();
+    }
+
+    @DataProvider(name = "userSearchData")
+    public Object[][] userSearchData() {
+        return new Object[][]{
+                {"Name", "Kasun Bandara"},
+                {"Role", "Admin"},
+                {"Email", "kasun@gmail.com"},
+                {"Address", "Dewalegama,Kegalle"}
+        };
+    }
+
+    @Test(dataProvider = "userSearchData", priority = 2)
+    public void searchUser(String type, String searchInput) throws InterruptedException {
+        if(i==3){
+            i+=1;
+        }
+        ExtentReportManager.startTest("User Management", "<b>Test Cases for User Management</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC001: Search User with " + type + "</b>");
+
+        webSteps.passValue(type, "Search Dropdown");
+        webSteps.type(searchInput, "Search Box");
+        webSteps.click("Search Button");
+
+        Assert.assertEquals(searchInput.trim(), webSteps.searchElement(1,i++).getText().trim());
+
     }
 
 }
