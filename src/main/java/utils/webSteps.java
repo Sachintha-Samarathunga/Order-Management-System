@@ -71,15 +71,6 @@ public class webSteps {
     }
 
 
-    public void dismissAlert(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.alertIsPresent());
-
-        Alert alert = driver.switchTo().alert();
-        alert.dismiss();
-    }
-
-
     public void clearInputField(String locator) {
         By xpath = constructElement(findElementRepo(locator));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -187,17 +178,6 @@ public class webSteps {
         }
     }
 
-    // Helper method to generate a random string
-    public String generateRandomString(int length) {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder result = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(characters.length());
-            result.append(characters.charAt(index));
-        }
-        return result.toString();
-    }
 
     //date picker
     public void selectDate(String datePickerLocator, String date) throws InterruptedException {
@@ -275,12 +255,21 @@ public class webSteps {
     }
 
     public WebElement searchElement(int row,int col){
-        WebElement element = driver.findElement(By.xpath("//tr["+row+"]/td["+col+"]"));
-        return  element;
+        return driver.findElement(By.xpath("//tr["+row+"]/td["+col+"]"));
     }
 
     public WebElement editAction(int row){
-        WebElement element = driver.findElement(By.xpath("//tr["+row+"]/td[last()]//child::button[1]"));
-        return element;
+        return driver.findElement(By.xpath("//tr["+row+"]/td[last()]//child::button[1]"));
+    }
+
+    public String getRandomNameFromTheList(){
+        String[] names = {
+                    "Sanidu", "Saman", "Sahan", "Thisara", "Themiya",
+                    "Sarath", "Sadaru", "kamal"
+            };
+
+        Random random = new Random();
+        int index = random.nextInt(names.length);
+        return names[index];
     }
 }
