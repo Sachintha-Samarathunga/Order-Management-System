@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 
 public class User extends BaseTest {
 
-    private String emailAddress = "kasun@gmail.com";
+    private String emailAddress = "sanidu@gmail.com";
     int i=1;
 
     @BeforeMethod
@@ -74,6 +74,14 @@ public class User extends BaseTest {
         } else {
             webSteps.editAction(1).click();
         }
+
+        webSteps.elementToBeVisible("Name Field");
+        webSteps.type(webSteps.getRandomNameFromTheList(), "Name Field");
+        webSteps.click("Role Field");
+        webSteps.selectFromDropdown();
+//        webSteps.type("712345678", "Contact Number Field");
+        webSteps.type(this.emailAddress, "Email Address Field");
+        webSteps.type("NO: 200, Galle road, Matara", "Address Field");
 
         webSteps.waiting();
     }

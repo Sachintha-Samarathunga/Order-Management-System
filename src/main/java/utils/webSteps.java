@@ -50,6 +50,7 @@ public class webSteps {
         By xpath = constructElement(findElementRepo(locator));
         WebElement inputField = driver.findElement(xpath);
 
+        elementToBeVisible(locator);
         inputField.click();
 
         String existingValue = inputField.getAttribute("value");
