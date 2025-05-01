@@ -25,7 +25,7 @@ public class User extends BaseTest {
         webSteps.click("SideMenu UserList Tab");
     }
 
-    @Test(priority = 1, description = "TC001: Create User with Valid Credentials")
+    @Test(priority = 1, description = "TS001: Create User with Valid Credentials")
     public void createUser() throws InterruptedException {
 
         this.emailAddress = webSteps.randomPersonalEmailAddress();
@@ -54,7 +54,7 @@ public class User extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "userSearchData", priority = 2, description = "TC002: Search User with Valid Filters")
+    @Test(dataProvider = "userSearchData", priority = 2, description = "TS002: Search User with Valid Filters")
     public void searchUser(String type, String searchInput) throws InterruptedException {
         if(i==3){ i+=1;};
         ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC001: Search User with " + type + "</b>");
@@ -67,6 +67,15 @@ public class User extends BaseTest {
     }
 
 
+    @Test(priority = 3, description = "TS003: Update Existing User from the List")
+    public void updateUser() throws InterruptedException {
+        if(webSteps.searchElement(1,4).getText().equals("kasun@gmail.com")){
+            webSteps.editAction(2).click();
+        } else {
+            webSteps.editAction(1).click();
+        }
 
+        webSteps.waiting();
+    }
 
 }

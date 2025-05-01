@@ -1,19 +1,15 @@
 package utils;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.time.Duration;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -281,5 +277,10 @@ public class webSteps {
     public WebElement searchElement(int row,int col){
         WebElement element = driver.findElement(By.xpath("//tr["+row+"]/td["+col+"]"));
         return  element;
+    }
+
+    public WebElement editAction(int row){
+        WebElement element = driver.findElement(By.xpath("//tr["+row+"]/td[last()]//child::button[1]"));
+        return element;
     }
 }
