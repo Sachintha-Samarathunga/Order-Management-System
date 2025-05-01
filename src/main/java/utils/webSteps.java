@@ -46,6 +46,7 @@ public class webSteps {
         click("Login Button");
 
         ExtentReportManager.testSteps("Successfully logged into the system");
+        ExtentReportManager.testSteps("<b><font color='Green'>Successfully logged into the system</b>");
         waiting();
     }
 
@@ -62,12 +63,15 @@ public class webSteps {
         }
 
         inputField.sendKeys(text);
+        ExtentReportManager.testSteps("Typed " + text + " in " + locator );
         waiting();
     }
 
     public void passValue(String text, String locator){
         By xpath = constructElement(findElementRepo(locator));
         driver.findElement(xpath).sendKeys(text);
+
+        ExtentReportManager.testSteps("Select " + text + " from " + locator);
     }
 
 

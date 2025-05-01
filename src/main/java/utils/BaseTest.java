@@ -11,10 +11,12 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 
 import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -62,6 +64,8 @@ public class BaseTest {
         }
     }
 
+
+
     public void loadUrl() throws InterruptedException, IOException {
         Properties properties = new Properties();
         FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
@@ -74,6 +78,16 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get(baseUrl);
         webSteps.waiting();
+    }
+
+    public void setUpReport(Method method){
+        String testName = method.getName();
+        Test testAnnotation = method.getAnnotation(Test.class);
+        String description = (testAnnotation != null && !testAnnotation.description().isEmpty())
+                ? testAnnotation.description()
+                : testName;
+
+        ExtentReportManager.startTest(testName, "<b>" + description + "</b>");
     }
 
     public void tearDown() {
