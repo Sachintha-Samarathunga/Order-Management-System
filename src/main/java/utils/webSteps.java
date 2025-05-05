@@ -87,7 +87,6 @@ public class webSteps {
     }
 
 
-    // Common method to click an element
     public void click(String locator) throws InterruptedException {
         By xpath = constructElement(findElementRepo(locator));
         WebElement button =  driver.findElement(xpath);
@@ -97,18 +96,16 @@ public class webSteps {
         waiting();
     }
 
-    // Common method to get text from an element
     public String getText(String locator) {
         By xpath = constructElement(findElementRepo(locator));
         return driver.findElement(xpath).getText();
     }
 
-    // Method to wait 2000ms
     public void waiting() throws InterruptedException {
         Thread.sleep(2000);
     }
 
-    // Method for scroll to given element
+
     public void scrollToElement(String locator) throws InterruptedException {
         By xpath = constructElement(findElementRepo(locator));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
@@ -118,8 +115,7 @@ public class webSteps {
         waiting();
 
     }
-
-    // Method to generate random personal email address
+    
     public String randomPersonalEmailAddress(){
         return ("example" + ThreadLocalRandom.current().nextInt(0, 10000) + "@gmail.com");
     }
