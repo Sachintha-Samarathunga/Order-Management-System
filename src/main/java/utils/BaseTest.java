@@ -80,16 +80,6 @@ public class BaseTest {
         webSteps.waiting();
     }
 
-    public void setUpReport(Method method){
-        String testName = method.getName();
-        Test testAnnotation = method.getAnnotation(Test.class);
-        String description = (testAnnotation != null && !testAnnotation.description().isEmpty())
-                ? testAnnotation.description()
-                : testName;
-
-        ExtentReportManager.startTest(testName, "<b>" + description + "</b>");
-    }
-
     public void tearDown() {
         if (driver != null) {
             driver.quit();
