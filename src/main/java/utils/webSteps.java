@@ -40,9 +40,6 @@ public class webSteps {
         type(email, "Email");
         type(password, "Password");
         click("Login Button");
-
-        ExtentReportManager.testSteps("Successfully logged into the system");
-        ExtentReportManager.testSteps("<b><font color='Green'>Successfully logged into the system</b>");
         waiting();
     }
 
@@ -60,15 +57,12 @@ public class webSteps {
         }
 
         inputField.sendKeys(text);
-        ExtentReportManager.testSteps("Typed " + text + " in " + locator );
         waiting();
     }
 
     public void passValue(String text, String locator){
         By xpath = constructElement(findElementRepo(locator));
         driver.findElement(xpath).sendKeys(text);
-
-        ExtentReportManager.testSteps("Select " + text + " from " + locator);
     }
 
 
@@ -92,7 +86,6 @@ public class webSteps {
         WebElement button =  driver.findElement(xpath);
         button.click();
 
-        ExtentReportManager.testSteps("Clicked " + locator);
         waiting();
     }
 
@@ -255,8 +248,8 @@ public class webSteps {
         return driver.findElement(By.xpath("//tr["+row+"]/td["+col+"]"));
     }
 
-    public WebElement editAction(int row){
-        return driver.findElement(By.xpath("//tr["+row+"]/td[last()]//child::button[1]"));
+    public WebElement clickAction(int row, int order){
+        return driver.findElement(By.xpath("//tr["+row+"]/td[last()]//child::button["+order+"]"));
     }
 
     public String getRandomNameFromTheList(){
