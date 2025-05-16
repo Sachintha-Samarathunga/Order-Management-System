@@ -64,9 +64,10 @@ public class Unit extends BaseTest {
                         "<br>Step 5 - Entered Search Input" +
                         "<br>Step 6 - Clicked Search"
         );
-        webSteps.passValue(searchBy,"SearchBy_Dropdown");
-        webSteps.type(searchInput, "SearchBy_SearchBar");
+        webSteps.passValue(searchBy,"Search Dropdown");
+        webSteps.type(searchInput, "Search Box");
         webSteps.click("SearchBy_SearchButton");
+        webSteps.click("Search Button");
 //        String actualResult = webSteps.getTableCellText(1, tableColumnIndex);
 //        Assert.assertEquals(actualResult, searchInput, "Search result does not match input value.");
     }
