@@ -15,11 +15,12 @@ import java.io.IOException;
 
 public class Unit extends BaseTest {
 
+    static int i=1;
+
     @BeforeMethod
     public void setUp() throws InterruptedException, IOException {
         loadUrl();
         webSteps.login();
-        webSteps.waiting();
         webSteps.click("SideMenu Products Tab");
         webSteps.click("SideMenu Units Tab");
     }
@@ -47,15 +48,15 @@ public class Unit extends BaseTest {
     @DataProvider(name = "searchUnit")
     public Object[][] searchUnit() {
         return new Object[][] {
-                { "Unit Name",1, PropertyUtils.getProperty("Unit_Name")},
-                { "Short Name",2, PropertyUtils.getProperty("Short_Name")}
+                { "Unit Name", PropertyUtils.getProperty("Unit_Name")},
+                { "Short Name", PropertyUtils.getProperty("Short_Name")}
         };
     }
     @Test(priority = 2, dataProvider = "searchUnit")
-    public void searchUnit(String searchBy,int tableColumnIndex, String searchInput) throws InterruptedException, AWTException {
+    public void searchUnit(String searchBy, String searchInput) throws InterruptedException, AWTException {
         ExtentReportManager.startTest("Units Functionality", "<b>Search Unit</b>");
         ExtentReportManager.testSteps(
-                "<b><font color='blue'>Test Case : </font>TC02: Verify that the user can successfully search an unit</b> " +
+                "<b><font color='blue'>Test Case : </font>TC0"+(i+1)+": Verify that the user can successfully search an unit by "+searchBy+"</b> " +
                         "<br><b><font color='blue'>Test Steps : </font></b>" +
                         "<br>Step 1 - Logged to the System" +
                         "<br>Step 2 - Clicked Products" +
@@ -66,8 +67,9 @@ public class Unit extends BaseTest {
         );
         webSteps.passValue(searchBy,"Search Dropdown");
         webSteps.type(searchInput, "Search Box");
-        webSteps.click("SearchBy_SearchButton");
         webSteps.click("Search Button");
+
+        Assert.assertEquals(searchInput.trim(), webSteps.searchElement(1,i++).getText().trim());
 //        String actualResult = webSteps.getTableCellText(1, tableColumnIndex);
 //        Assert.assertEquals(actualResult, searchInput, "Search result does not match input value.");
     }
