@@ -70,31 +70,29 @@ public class Unit extends BaseTest {
         webSteps.click("Search Button");
 
         Assert.assertEquals(searchInput.trim(), webSteps.searchElement(1,i++).getText().trim());
-//        String actualResult = webSteps.getTableCellText(1, tableColumnIndex);
-//        Assert.assertEquals(actualResult, searchInput, "Search result does not match input value.");
     }
 //
-//    @Test(priority = 3)
-//    public void editUnit() throws InterruptedException, AWTException {
-//        ExtentReportManager.startTest("Units Functionality", "<b>Edit Unit</b>");
-//        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC03: Verify that the user can successfully edit an unit</b>");
-//        ExtentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
-//                "<br>Step 1- Login to the System" +
-//                "<br>Step 2- Click Products " +
-//                "<br>Step 3- Click Units " +
-//                "<br>Step 4 - Search the unit name that needs to be edited" +
-//                "<br>Step 5 - Click Edit Action" +
-//                "<br>Step 6 - Make the necessary changes" +
-//                "<br>Step 7 - Click Update"
-//        );
-//        webSteps.passValue("Short Name","SearchBy_Dropdown");
-//        webSteps.type(PropertyUtils.getProperty("Short_Name"),"SearchBy_SearchBar");
-//        webSteps.click("SearchBy_SearchButton");
-//        webSteps.click("Action1");
-//        webSteps.type(webSteps.generateRandomUnitName(),"Unit_Name");
-//        webSteps.type(webSteps.generateRandomUnitShortName(),"Short_Name");
-//        webSteps.click("AllowDecimalCheckBox");
-//        webSteps.click("UpdateButton");
-//        Assert.assertEquals("Unit updated successfully",webSteps.getText("ToastMessage"), "Passed");
-//    }
+    @Test(priority = 3)
+    public void editUnit() throws InterruptedException, AWTException {
+        ExtentReportManager.startTest("Units Functionality", "<b>Update Unit</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC04: Verify that the user can successfully update an unit</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
+                "<br>Step 1- Logged in to the System" +
+                "<br>Step 2- Clicked Products " +
+                "<br>Step 3- Clicked Units " +
+                "<br>Step 4 - Searched the unit name that needs to be edited" +
+                "<br>Step 5 - Clicked Edit Action" +
+                "<br>Step 6 - Made the necessary changes" +
+                "<br>Step 7 - Clicked Update"
+        );
+        webSteps.passValue("Short Name","Search Dropdown");
+        webSteps.type(PropertyUtils.getProperty("Short_Name"),"Search Box");
+        webSteps.click("Search Button");
+        webSteps.clickAction(1,1).click();
+        webSteps.type(webSteps.generateRandomUnitName(),"Unit Name Field");
+        webSteps.type(webSteps.generateRandomUnitShortName(),"Short  Name Field");
+        webSteps.click("Allow Decimal Checkbox");
+        webSteps.click("Update Button");
+        Assert.assertEquals("Unit updated successfully",webSteps.getText("Toast Message"), "Passed");
+    }
 }
