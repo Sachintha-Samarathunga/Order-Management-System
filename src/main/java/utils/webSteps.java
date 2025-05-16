@@ -262,4 +262,18 @@ public class webSteps {
         int index = random.nextInt(names.length);
         return names[index];
     }
+
+    public String generateRandomUnitName() {
+        int count = PropertyUtils.getIntProperty("Count");
+        String randomUnitName = "Unit_" + count++;
+        PropertyUtils.setIntProperty("Count", count);
+        PropertyUtils.setProperty("Unit_Name", randomUnitName);
+        return randomUnitName;
+    }
+
+    public String generateRandomUnitShortName() {
+        String randomUnitShortName = "UT_" + ThreadLocalRandom.current().nextInt(0, 100);
+        PropertyUtils.setProperty("Short_Name", randomUnitShortName);
+        return randomUnitShortName;
+    }
 }
