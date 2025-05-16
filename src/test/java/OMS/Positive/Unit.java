@@ -1,13 +1,14 @@
-package Positive.Products;
+package OMS.Positive;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.BaseTest;
-import utils.PropertyUtils;
+
 import utils.ExtentReportManager;
+import utils.PropertyUtils;
 
 import java.awt.*;
 import java.io.IOException;
@@ -43,32 +44,32 @@ public class Unit extends BaseTest {
         Assert.assertEquals("Unit created successfully",webSteps.getText("ToastMessage"), "Passed");
     }
 
-//    @DataProvider(name = "searchUnit")
-//    public Object[][] searchUnit() {
-//        return new Object[][] {
-//                { "Unit Name",1, PropertyUtils.getProperty("Unit_Name")},
-//                { "Short Name",2, PropertyUtils.getProperty("Short_Name")}
-//        };
-//    }
-//    @Test(priority = 2, dataProvider = "searchUnit")
-//    public void searchUnit(String searchBy,int tableColumnIndex, String searchInput) throws InterruptedException, AWTException {
-//        ExtentReportManager.startTest("Units Functionality", "<b>Search Unit</b>");
-//        ExtentReportManager.testSteps(
-//                "<b><font color='blue'>Test Case : </font>TC02: Verify that the user can successfully search an unit</b> " +
-//                        "<br><b><font color='blue'>Test Steps : </font></b>" +
-//                        "<br>Step 1 - Login to the System" +
-//                        "<br>Step 2 - Click Products" +
-//                        "<br>Step 3 - Click Units" +
-//                        "<br>Step 4 - Select '" + searchBy + "' from 'Search By' dropdown" +
-//                        "<br>Step 5 - Enter Search Input" +
-//                        "<br>Step 6 - Click Search"
-//        );
-//        webSteps.passValue(searchBy,"SearchBy_Dropdown");
-//        webSteps.type(searchInput, "SearchBy_SearchBar");
-//        webSteps.click("SearchBy_SearchButton");
+    @DataProvider(name = "searchUnit")
+    public Object[][] searchUnit() {
+        return new Object[][] {
+                { "Unit Name",1, PropertyUtils.getProperty("Unit_Name")},
+                { "Short Name",2, PropertyUtils.getProperty("Short_Name")}
+        };
+    }
+    @Test(priority = 2, dataProvider = "searchUnit")
+    public void searchUnit(String searchBy,int tableColumnIndex, String searchInput) throws InterruptedException, AWTException {
+        ExtentReportManager.startTest("Units Functionality", "<b>Search Unit</b>");
+        ExtentReportManager.testSteps(
+                "<b><font color='blue'>Test Case : </font>TC02: Verify that the user can successfully search an unit</b> " +
+                        "<br><b><font color='blue'>Test Steps : </font></b>" +
+                        "<br>Step 1 - Logged to the System" +
+                        "<br>Step 2 - Clicked Products" +
+                        "<br>Step 3 - Clicked Units" +
+                        "<br>Step 4 - Selected '" + searchBy + "' from 'Search By' dropdown" +
+                        "<br>Step 5 - Entered Search Input" +
+                        "<br>Step 6 - Clicked Search"
+        );
+        webSteps.passValue(searchBy,"SearchBy_Dropdown");
+        webSteps.type(searchInput, "SearchBy_SearchBar");
+        webSteps.click("SearchBy_SearchButton");
 //        String actualResult = webSteps.getTableCellText(1, tableColumnIndex);
 //        Assert.assertEquals(actualResult, searchInput, "Search result does not match input value.");
-//    }
+    }
 //
 //    @Test(priority = 3)
 //    public void editUnit() throws InterruptedException, AWTException {
