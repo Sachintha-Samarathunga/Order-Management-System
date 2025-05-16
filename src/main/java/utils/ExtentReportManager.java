@@ -35,7 +35,7 @@ public class ExtentReportManager {
             ExtentSparkReporter sparkReporter = new ExtentSparkReporter(REPORT_PATH);
             sparkReporter.config().setDocumentTitle("Automation Test Report");
             sparkReporter.config().getCss();
-            sparkReporter.config().setReportName("GCEC-GIT GlobaliTrack >> Fleet Management System");
+            sparkReporter.config().setReportName("SM - Order Management System");
             sparkReporter.config().setTheme(Theme.STANDARD);
 
             extent = new ExtentReports();
