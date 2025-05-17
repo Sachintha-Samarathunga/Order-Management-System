@@ -60,27 +60,28 @@ public class Brands extends BaseTest {
 
         Assert.assertEquals(PropertyUtils.getProperty("Brand_Name"), webSteps.searchElement(1,1).getText().trim(), "Search result does not match input value.");
     }
-//
-//    @Test(priority = 3)
-//    public void editBrand() throws InterruptedException, AWTException {
-//        extentReportManager.startTest("Brands Functionality", "<b>Edit Brand</b>");
-//        extentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC03: Verify that the user can successfully edit a brand</b>");
-//        extentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
-//                "<br>Step 1- Login to the System" +
-//                "<br>Step 2- Click Products " +
-//                "<br>Step 3- Click Brands " +
-//                "<br>Step 4 - Search the brand name that needs to be edited" +
-//                "<br>Step 5 - Click Edit Action" +
-//                "<br>Step 6 - Make the necessary changes" +
-//                "<br>Step 7 - Click Update"
-//        );
-//        webSteps.passValue("Brand Name","SearchBy_Dropdown");
-//        webSteps.type(PropertyUtils.getProperty("Brand_Name"),"SearchBy_SearchBar");
-//        webSteps.click("SearchBy_SearchButton");
-//        webSteps.click("Action1");
-//        webSteps.type(webSteps.generateRandomBrandName(),"Brand_Name");
-//        webSteps.type("Testing_Edit Brand Description","Brand_Remark");
-//        webSteps.click("UpdateButton");
-//        Assert.assertEquals("Brand updated successfully",webSteps.getText("ToastMessage"), "Passed");
-//    }
+
+    @Test(priority = 3)
+    public void editBrand() throws InterruptedException, AWTException {
+        ExtentReportManager.startTest("Brands Functionality", "<b>Update Brand</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC03: Verify that the user can successfully update a brand</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
+                "<br>Step 1- Logged in to the System" +
+                "<br>Step 2- Clicked Products " +
+                "<br>Step 3- Clicked Brands " +
+                "<br>Step 4 - Searched the brand name that needs to be edited" +
+                "<br>Step 5 - Clicked Edit Action" +
+                "<br>Step 6 - Made the necessary changes" +
+                "<br>Step 7 - Clicked Update"
+        );
+        webSteps.passValue("Brand Name","Search Dropdown");
+        webSteps.type(PropertyUtils.getProperty("Brand_Name"),"Search Box");
+        webSteps.click("Search Button");
+        webSteps.clickAction(1,1).click();
+        webSteps.type(webSteps.generateRandomBrandName(),"Brand_Name");
+        webSteps.type("Updated Brand Description","Brand_Remark");
+        webSteps.click("Update Button");
+
+        Assert.assertEquals("Brand updated successfully",webSteps.getText("Toast Message"), "Passed");
+    }
 }
