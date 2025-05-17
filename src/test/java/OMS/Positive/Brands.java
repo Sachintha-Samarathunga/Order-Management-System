@@ -54,11 +54,11 @@ public class Brands extends BaseTest {
                 "<br>Step 4 - Entered Search Input" +
                 "<br>Step 5 - Clicked Search"
         );
-        webSteps.passValue("Brand Name","SearchBy_Dropdown");
-        webSteps.type(PropertyUtils.getProperty("Brand_Name"),"SearchBy_SearchBar");
-        webSteps.click("SearchBy_SearchButton");
-        String actualResult = webSteps.getTableCellText(1, 1);
-        Assert.assertEquals(actualResult, PropertyUtils.getProperty("Brand_Name"), "Search result does not match input value.");
+        webSteps.passValue("Brand Name","Search Dropdown");
+        webSteps.type(PropertyUtils.getProperty("Brand_Name"),"Search Box");
+        webSteps.click("Search Button");
+
+        Assert.assertEquals(PropertyUtils.getProperty("Brand_Name"), webSteps.searchElement(1,1).getText().trim(), "Search result does not match input value.");
     }
 //
 //    @Test(priority = 3)
