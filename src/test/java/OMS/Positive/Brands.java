@@ -18,8 +18,8 @@ public class Brands extends BaseTest {
         loadUrl();
         webSteps.login();
         webSteps.waiting();
-        webSteps.click("ClickProducts");
-        webSteps.click("ClickBrands");
+        webSteps.click("SideMenu Products Tab");
+        webSteps.click("SideMenu Brands Tab");
     }
 
     @Test(priority = 1)
