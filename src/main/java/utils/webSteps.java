@@ -294,4 +294,22 @@ public class webSteps {
         PropertyUtils.setProperty("Category_Name", randomCategoryName);
         return randomCategoryName;
     }
+
+    public String generateRandomProductName() {
+        int count = PropertyUtils.getIntProperty("Count");
+        String randomProductName = "Product_" + count++;
+        PropertyUtils.setIntProperty("Count", count);
+        PropertyUtils.setProperty("Product_Name",randomProductName);
+        return randomProductName;
+    }
+
+    public void searchFromDropdown(String propertyValue, String locator) throws InterruptedException {
+        String name = PropertyUtils.getProperty(propertyValue);
+        click(locator);
+        type(name,"Dropdown Search");
+        WebElement element = driver.findElement(By.xpath("//div[contains(text(),'" + name + "')]"));
+        element.click();
+        waiting();
+    }
+
 }

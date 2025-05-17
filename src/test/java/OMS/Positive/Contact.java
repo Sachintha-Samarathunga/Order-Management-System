@@ -45,7 +45,7 @@ public class Contact extends BaseTest {
     @Test(priority = 2)
     public void updateContact() throws InterruptedException, AWTException {
         ExtentReportManager.startTest("Contacts Functionality", "<b>Update Customer</b>");
-        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC01: Verify that the user can successfully update a customer</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC03: Verify that the user can successfully update a customer</b>");
         ExtentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
                 "<br>Step 1- Login to the System" +
                 "<br>Step 2- Navigated to the contacts" +

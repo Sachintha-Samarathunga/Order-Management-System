@@ -22,6 +22,12 @@ public class Brands extends BaseTest {
         webSteps.click("SideMenu Brands Tab");
     }
 
+    public void search() throws InterruptedException {
+        webSteps.passValue("Brand Name","Search Dropdown");
+        webSteps.type(PropertyUtils.getProperty("Brand_Name"),"Search Box");
+        webSteps.click("Search Button");
+    }
+
     @Test(priority = 1)
     public void addBrand() throws InterruptedException, AWTException {
         ExtentReportManager.startTest("Brands Functionality", "<b>Create Brand</b>");
@@ -54,11 +60,9 @@ public class Brands extends BaseTest {
                 "<br>Step 4 - Entered Search Input" +
                 "<br>Step 5 - Clicked Search"
         );
-        webSteps.passValue("Brand Name","Search Dropdown");
-        webSteps.type(PropertyUtils.getProperty("Brand_Name"),"Search Box");
-        webSteps.click("Search Button");
 
-        Assert.assertEquals(PropertyUtils.getProperty("Brand_Name"), webSteps.searchElement(1,1).getText().trim(), "Search result does not match input value.");
+        search();
+        Assert.assertEquals(webSteps.searchElement(1,1).getText().trim(),PropertyUtils.getProperty("Brand_Name"),"Search result does not match input value.");
     }
 
     @Test(priority = 3)
@@ -74,9 +78,7 @@ public class Brands extends BaseTest {
                 "<br>Step 6 - Made the necessary changes" +
                 "<br>Step 7 - Clicked Update"
         );
-        webSteps.passValue("Brand Name","Search Dropdown");
-        webSteps.type(PropertyUtils.getProperty("Brand_Name"),"Search Box");
-        webSteps.click("Search Button");
+        search();
         webSteps.clickAction(1,1).click();
         webSteps.type(webSteps.generateRandomBrandName(),"Brand Name Field");
         webSteps.type("Updated Brand Description","Brand Remark Field");
