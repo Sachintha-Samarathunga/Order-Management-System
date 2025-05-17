@@ -277,4 +277,11 @@ public class webSteps {
         PropertyUtils.setProperty("Short_Name", randomUnitShortName);
         return randomUnitShortName;
     }
+
+    public String generateRandomBrandName() {
+        int count = PropertyUtils.getIntProperty("Count");
+        String randomBrandName = "Brand_" + count++;
+        PropertyUtils.setProperty("Brand_Name", randomBrandName);
+        return randomBrandName;
+    }
 }
