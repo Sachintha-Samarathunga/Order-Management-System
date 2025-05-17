@@ -27,7 +27,6 @@ public class webSteps {
     public webSteps(WebDriver driver) {
         webSteps.driver = driver;
 
-        // Load email and password from properties file
         Properties properties = PropertyLoader.loadProperties("src/main/resources/dataset.properties");
         this.businessName = properties.getProperty("business");
         this.email = properties.getProperty("email");
@@ -286,5 +285,13 @@ public class webSteps {
         PropertyUtils.setIntProperty("Count", count);
         PropertyUtils.setProperty("Brand_Name", randomBrandName);
         return randomBrandName;
+    }
+
+    public String generateRandomCategoryName() {
+        int count = PropertyUtils.getIntProperty("Count");
+        String randomCategoryName = "Category_" + count++;
+        PropertyUtils.setIntProperty("Count", count);
+        PropertyUtils.setProperty("Category_Name", randomCategoryName);
+        return randomCategoryName;
     }
 }
