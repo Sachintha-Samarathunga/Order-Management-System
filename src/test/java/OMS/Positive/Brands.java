@@ -35,7 +35,7 @@ public class Brands extends BaseTest {
                 "<br>Step 6- Clicked 'Save' Button"
         );
         webSteps.click("Add New Brand Button");
-        webSteps.type(webSteps.generateRandomBrandName(),"Brand  Name Field");
+        webSteps.type(webSteps.generateRandomBrandName(),"Brand Name Field");
         webSteps.type("Testing_Brand Description","Brand Remark Field");
         webSteps.click("Save Button");
 
@@ -78,8 +78,8 @@ public class Brands extends BaseTest {
         webSteps.type(PropertyUtils.getProperty("Brand_Name"),"Search Box");
         webSteps.click("Search Button");
         webSteps.clickAction(1,1).click();
-        webSteps.type(webSteps.generateRandomBrandName(),"Brand_Name");
-        webSteps.type("Updated Brand Description","Brand_Remark");
+        webSteps.type(webSteps.generateRandomBrandName(),"Brand Name Field");
+        webSteps.type("Updated Brand Description","Brand Remark Field");
         webSteps.click("Update Button");
 
         Assert.assertEquals("Brand updated successfully",webSteps.getText("Toast Message"), "Passed");
