@@ -36,6 +36,7 @@ public class webSteps {
 
     public void login() throws InterruptedException {
         waiting();
+        elementToBeVisible("Business Name");
         type(businessName, "Business Name");
         type(email, "Email");
         type(password, "Password");
