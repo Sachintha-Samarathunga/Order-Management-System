@@ -272,7 +272,8 @@ public class webSteps {
     }
 
     public String generateRandomUnitShortName() {
-        String randomUnitShortName = "UT_" + ThreadLocalRandom.current().nextInt(0, 100);
+        int count = PropertyUtils.getIntProperty("Count");
+        String randomUnitShortName = "UT_" + count++;
         PropertyUtils.setProperty("Short_Name", randomUnitShortName);
         return randomUnitShortName;
     }
