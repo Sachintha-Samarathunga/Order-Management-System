@@ -42,7 +42,7 @@ public class Unit extends BaseTest {
         webSteps.type(webSteps.generateRandomUnitShortName(),"Short  Name Field");
         webSteps.click("Save Button");
 
-        Assert.assertEquals("Unit created successfully",webSteps.getText("ToastMessage"), "Passed");
+        Assert.assertEquals("Unit created successfully",webSteps.getText("Toast Message"), "Passed");
     }
 
     @DataProvider(name = "searchUnit")
