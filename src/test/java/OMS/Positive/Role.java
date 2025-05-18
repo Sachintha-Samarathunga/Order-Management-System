@@ -16,8 +16,8 @@ public class Role extends BaseTest {
         loadUrl();
         webSteps.login();
         webSteps.waiting();
-        webSteps.click("ClickUser");
-        webSteps.click("ClickRoles");
+        webSteps.click("SideMenu User Tab");
+        webSteps.click("SideMenu Roles Tab");
     }
 
     @Test(priority = 1)
