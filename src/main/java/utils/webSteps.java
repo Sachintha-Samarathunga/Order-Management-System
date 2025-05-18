@@ -35,7 +35,7 @@ public class webSteps {
 
     public void login() throws InterruptedException {
         waiting();
-        elementToBeVisible("Business Name");
+        implicitWait("Business Name");
         type(businessName, "Business Name");
         type(email, "Email");
         type(password, "Password");
@@ -319,5 +319,6 @@ public class webSteps {
         PropertyUtils.setProperty("Role_Name", randomRoleName);
         return randomRoleName;
     }
+
 
 }
