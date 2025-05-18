@@ -312,4 +312,12 @@ public class webSteps {
         waiting();
     }
 
+    public String generateRandomRoleName() {
+        int count = PropertyUtils.getIntProperty("Count");
+        String randomRoleName = "Role_" + count++;
+        PropertyUtils.setIntProperty("Count", count);
+        PropertyUtils.setProperty("Role_Name", randomRoleName);
+        return randomRoleName;
+    }
+
 }
