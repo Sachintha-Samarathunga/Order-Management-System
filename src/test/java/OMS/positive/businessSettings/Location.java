@@ -81,4 +81,31 @@ public class Location extends BaseTest {
         Assert.assertEquals(webSteps.searchElement(1,i++), searchInput.trim());
     }
 
+    @Test(priority = 3)
+    public void editLocation() throws InterruptedException, AWTException {
+        ExtentReportManager.startTest("Locations Functionality", "<b>Edit Location</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC03: Verify that the user can successfully edit a location</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
+                "<br>Step 1- Logged in to the System" +
+                "<br>Step 2- Clicked Settings " +
+                "<br>Step 3- Clicked Business Settings " +
+                "<br>Step 4- Clicked Locations " +
+                "<br>Step 3- Selected a Location" +
+                "<br>Step 4- Clicked Edit Action" +
+                "<br>Step 5- Edited Details" +
+                "<br>Step 6- Clicked 'Update' Button"
+        );
+        webSteps.passValue("Location","SearchBy_Dropdown");
+        webSteps.type(PropertyUtils.getProperty("Location_Name"),"SearchBy_SearchBar");
+        webSteps.click("SearchBy_SearchButton");
+        webSteps.clickAction(1,1).click();
+        webSteps.type(webSteps.generateRandomLocationName(),"Location Name Field");
+        webSteps.type(webSteps.generateRandomLocationAddress(),"Location Address Field");
+        webSteps.type(webSteps.generateRandomLocationCity(),"Location City Field");
+        webSteps.type("761236548","Location ContactNo Field");
+        webSteps.type("parallax01@gmail.com","Location Email Field");
+        webSteps.click("Update Button");
+        Assert.assertEquals("Location updated successfully",webSteps.getText("Toast Message"), "Passed");
+    }
+
 }
