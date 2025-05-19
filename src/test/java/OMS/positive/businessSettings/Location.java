@@ -2,9 +2,11 @@ package OMS.positive.businessSettings;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.BaseTest;
 import utils.ExtentReportManager;
+import utils.PropertyUtils;
 
 import java.awt.*;
 import java.io.IOException;
@@ -44,4 +46,5 @@ public class Location extends BaseTest {
 
         Assert.assertEquals("Location created successfully",webSteps.getText("Toast Message"));
     }
+
 }

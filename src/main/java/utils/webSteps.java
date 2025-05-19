@@ -322,9 +322,7 @@ public class webSteps {
 
     public String generateRandomLocationName() {
         int count = PropertyUtils.getIntProperty("Count");
-        int count1 = count++;
-        String str1 = String.valueOf(count1);
-        String randomLocationName = "Location_" + str1;
+        String randomLocationName = "Location" + convertToLetters(count++);
         PropertyUtils.setIntProperty("Count", count);
         PropertyUtils.setProperty("Location_Name",randomLocationName);
         return randomLocationName;
@@ -344,4 +342,32 @@ public class webSteps {
         return randomLocationCity;
     }
 
+    public static String convertToLetters(int number) {
+        String numStr = String.valueOf(number);
+        StringBuilder result = new StringBuilder();
+
+        for (char digit : numStr.toCharArray()) {
+            switch (digit) {
+                case '1': result.append('A'); break;
+                case '2': result.append('B'); break;
+                case '3': result.append('C'); break;
+                case '4': result.append('D'); break;
+                case '5': result.append('E'); break;
+                case '6': result.append('F'); break;
+                case '7': result.append('G'); break;
+                case '8': result.append('H'); break;
+                case '9': result.append('I'); break;
+                case '0': result.append('J'); break;
+                default: result.append('?'); // in case of unexpected character
+            }
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        int input = 123;
+        String output = convertToLetters(input);
+        System.out.println("Converted: " + output); // Output: ABC
+    }
 }
