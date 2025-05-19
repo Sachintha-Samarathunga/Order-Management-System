@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.BaseTest;
 import utils.ExtentReportManager;
+import utils.PropertyUtils;
 
 import java.awt.*;
 import java.io.IOException;
@@ -39,5 +40,24 @@ public class Role extends BaseTest {
         webSteps.click("Save Button");
 
         Assert.assertEquals("Role created successfully",webSteps.getText("Toast Message"), "Passed");
+    }
+
+    @Test(priority = 2)
+    public void searchRole() throws InterruptedException, AWTException {
+        ExtentReportManager.startTest("Roles Functionality", "<b>Search Role</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC02: Verify that the user can successfully search a role</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
+                "<br>Step 1- Logged in to the System" +
+                "<br>Step 2- Clicked User " +
+                "<br>Step 3- Clicked Roles " +
+                "<br>Step 4 - Selected Role from 'Search By' dropdown" +
+                "<br>Step 4 - Entered Search Input" +
+                "<br>Step 5 - Clicked Search"
+        );
+        webSteps.passValue("Role","Search Dropdown");
+        webSteps.type(PropertyUtils.getProperty("Role_Name"),"SearchBy_SearchBar");
+        webSteps.click("Search Button");
+
+        Assert.assertEquals(webSteps.searchElement(1,1).getText().trim(), PropertyUtils.getProperty("Role_Name").trim(), "Search result does not match input value.");
     }
 }
