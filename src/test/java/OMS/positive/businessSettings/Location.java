@@ -13,6 +13,8 @@ import java.io.IOException;
 
 public class Location extends BaseTest {
 
+    int i=2;
+
     @BeforeMethod
     public void setUp() throws InterruptedException, IOException {
         loadUrl();
@@ -45,6 +47,38 @@ public class Location extends BaseTest {
         webSteps.click("Save Button");
 
         Assert.assertEquals("Location created successfully",webSteps.getText("Toast Message"));
+    }
+
+    @DataProvider(name = "locationSearchData")
+    public Object[][] locationSearchData() {
+        return new Object[][]{
+                {"Location", PropertyUtils.getProperty("Location_Name")},
+                {"Address", PropertyUtils.getProperty("Location_Address")},
+                {"City", PropertyUtils.getProperty("Location_City")},
+                {"Email", "parallax@gmail.com"},
+        };
+    }
+
+    @Test(dataProvider = "locationSearchData", priority = 2)
+    public void searchLocation (String type,String searchInput) throws InterruptedException {
+        ExtentReportManager.startTest("Locations Functionality", "<b>Search Location Using " + type + "</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Case : </font>Verify that the location can search by " + type.toLowerCase() + "</b>");
+        ExtentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
+                "<br>Step 1 - Logged in to the System" +
+                "<br>Step 2- Clicked Settings " +
+                "<br>Step 3- Clicked Business Settings " +
+                "<br>Step 4- Clicked Locations " +
+                "<br>Step 5 - Selected '" + type + "' from 'Search By' dropdown" +
+                "<br>Step 6 - Entered Search Input" +
+                "<br>Step 7 - Clicked Search"
+        );
+
+        if(i==5){ i+=1;};
+        webSteps.passValue(type,"Search Dropdown");
+        webSteps.type(searchInput,"Search Box");
+        webSteps.click("Search Button");
+
+        Assert.assertEquals(webSteps.searchElement(1,i++), searchInput.trim());
     }
 
 }
