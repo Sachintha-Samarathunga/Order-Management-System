@@ -320,5 +320,18 @@ public class webSteps {
         return randomRoleName;
     }
 
+    public String generateRandomLocationName() {
+        int count = PropertyUtils.getIntProperty("Count");
+        String randomLocationName = "Location_" + count++;
+        PropertyUtils.setIntProperty("Count", count);
+        PropertyUtils.setProperty("Location_Name",randomLocationName);
+        return randomLocationName;
+    }
+
+    public String generateRandomLocationAddress() {
+        String randomLocationAddress = "NO:"+ PropertyUtils.getIntProperty("Count")+", Main Street, "+PropertyUtils.getProperty("Location_Name");
+        PropertyUtils.setProperty("Location_Address",randomLocationAddress);
+        return randomLocationAddress;
+    }
 
 }
