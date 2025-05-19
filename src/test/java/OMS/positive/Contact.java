@@ -1,4 +1,4 @@
-package OMS.Positive;
+package OMS.positive;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
