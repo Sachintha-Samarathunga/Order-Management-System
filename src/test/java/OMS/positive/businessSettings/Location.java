@@ -35,13 +35,13 @@ public class Location extends BaseTest {
                 "<br>Step 7- Clicked 'Save' Button"
         );
         webSteps.click("Add New Location Button");
-        webSteps.type(webSteps.generateRandomLocationName(),"Location_Name");
-        webSteps.type(webSteps.generateRandomLocationAddress(),"Location_Address");
-        webSteps.type(webSteps.generateRandomLocationCity(),"Location_City");
-        webSteps.type(webSteps.generateRandomLocationContactNo(),"Location_ContactNo");
-        webSteps.type(webSteps.generateRandomLocationEmail(),"Location_Email");
-        webSteps.click("SaveButton");
-        webSteps.implicitWait("ToastMessage");
-        Assert.assertEquals("Location created successfully",webSteps.getText("ToastMessage"));
+        webSteps.type(webSteps.generateRandomLocationName(),"Location Name Field");
+        webSteps.type(webSteps.generateRandomLocationAddress(),"Location Address Field");
+        webSteps.type(webSteps.generateRandomLocationCity(),"Location City Field");
+        webSteps.type("761236547","Location ContactNo Field");
+        webSteps.type("parallax@gmail.com","Location Email Field");
+        webSteps.click("Save Button");
+
+        Assert.assertEquals("Location created successfully",webSteps.getText("Toast Message"));
     }
 }
