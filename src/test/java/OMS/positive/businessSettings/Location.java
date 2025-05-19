@@ -4,5 +4,5 @@ import utils.BaseTest;
 
 public class Location extends BaseTest {
 
-    
+
 }
