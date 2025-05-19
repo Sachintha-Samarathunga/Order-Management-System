@@ -55,7 +55,7 @@ public class Role extends BaseTest {
                 "<br>Step 5 - Clicked Search"
         );
         webSteps.passValue("Role","Search Dropdown");
-        webSteps.type(PropertyUtils.getProperty("Role_Name"),"SearchBy_SearchBar");
+        webSteps.type(PropertyUtils.getProperty("Role_Name"),"Search Box");
         webSteps.click("Search Button");
 
         Assert.assertEquals(webSteps.searchElement(1,1).getText().trim(), PropertyUtils.getProperty("Role_Name").trim(), "Search result does not match input value.");
