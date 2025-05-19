@@ -83,6 +83,6 @@ public class Role extends BaseTest {
         webSteps.type(webSteps.generateRandomRoleName(),"Role Name Field");
         webSteps.click("Update Button");
 
-        Assert.assertEquals("Role updated successfully",webSteps.getText("ToastMessage"), "Passed");
+        Assert.assertEquals("Role updated successfully",webSteps.getText("Toast Message"), "Passed");
     }
 }
