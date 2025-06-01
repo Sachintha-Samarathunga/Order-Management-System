@@ -44,7 +44,7 @@ This repository contains the automated test suite for the **Order Management Sys
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/oms-automation.git
+git clone https://github.com/Sachintha-Samarathunga/Order-Management-System.git
 cd oms-automation
 
 # Install dependencies
