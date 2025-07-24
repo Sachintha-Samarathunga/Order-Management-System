@@ -1,9 +1,9 @@
-name: Run TestNG Test Suite - Test.xml
+name: Run TestNG Suite with Extent Report
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '08 7 * * *'  # 12:30 PM IST
+    - cron: '21 7 * * *'  # 12:48 PM IST
 
 jobs:
   run-testng-tests:
@@ -13,11 +13,11 @@ jobs:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v3
 
-      - name: ☕ Set up Java (Eclipse Temurin 17)
+      - name: ☕ Set up Java 17 (Eclipse Temurin)
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
       - name: 📦 Install Maven
         run: |
@@ -27,9 +27,14 @@ jobs:
       - name: ▶️ Run TestNG Suite - Test.xml
         run: mvn clean test -DsuiteXmlFile=Test.xml
 
-      - name: 📤 Upload TestNG HTML Report
+      - name: 📂 List target folder contents (for debugging)
+        run: ls -R target
+
+      - name: 📤 Upload Extent Report and Screenshots
         uses: actions/upload-artifact@v4
         with:
-          name: testng-html-report
-          path: test-output  # change if your report is elsewhere
+          name: extent-report
+          path: |
+            target/ExtentReport.html
+            target/screenshots/
  
