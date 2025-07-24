@@ -3,7 +3,7 @@ name: Run TestNG Test Suite - Test.xml
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 7 * * *'  # 12:26 PM IST
+    - cron: '08 7 * * *'  # 12:30 PM IST
 
 jobs:
   run-testng-tests:
@@ -31,8 +31,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: testng-html-report
-          path: test-output  # default TestNG report folder; change if different
-
-      - name: 📝 Add Report Download Link to Summary
-        run: echo "[📄 Download HTML Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
+          path: test-output  # change if your report is elsewhere
  
