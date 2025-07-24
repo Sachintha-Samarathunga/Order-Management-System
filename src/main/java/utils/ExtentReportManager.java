@@ -23,8 +23,8 @@ public class ExtentReportManager {
     private static ExtentReports extent;
     private static final Map<String, ExtentTest> parentTests = new HashMap<>();
     private static ExtentTest currentTest;
-    private static final String REPORT_PATH = "test-output/ExtentReport.html";
-    private static final String SCREENSHOT_PATH = "test-output/screenshots/";
+    private static final String REPORT_PATH = "target/ExtentReport.html";
+    private static final String SCREENSHOT_PATH = "target/screenshots/";
     private static LocalDateTime executionStartTime;
     private static LocalDateTime executionEndTime;
     private static String browserName;
