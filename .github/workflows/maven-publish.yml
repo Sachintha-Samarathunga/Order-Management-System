@@ -1,38 +1,37 @@
-name: Run TestNG Test Suite - Test.xml
-
+name: Run TestNG Test Suite - Custom Report Folder
+ 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 7 * * *'  # 12:48 PM IST
-
+    - cron: '30 7 * * *'  # 1:00 PM IST
+ 
 jobs:
   run-testng-tests:
     runs-on: ubuntu-latest
-
+ 
     steps:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v3
-
+ 
       - name: ☕ Set up Java 17 (Eclipse Temurin)
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: 17
-
+ 
       - name: 📦 Install Maven
         run: |
           sudo apt-get update
           sudo apt-get install -y maven
-
+ 
       - name: ▶️ Run TestNG Suite - Test.xml
         run: mvn clean test -DsuiteXmlFile=Test.xml
-
-      - name: 📂 List test-output folder contents (for debugging)
-        run: ls -l test-output
-
-      - name: 📤 Upload TestNG HTML Report
+ 
+      - name: 📂 List custom report folder contents (debug)
+        run: ls -lR testng-report
+ 
+      - name: 📤 Upload Custom TestNG Report
         uses: actions/upload-artifact@v4
         with:
-          name: testng-html-report
-          path: test-output
- 
+          name: testng-report
+          path: testng-report
