@@ -3,9 +3,8 @@
 <suite name="Order Management System">
     <test name="OMS">
         <classes>
-            <class name="OMS.positive.Brands"/>
+            <class name="OMS.positive.Login"/>
             <class name="OMS.positive.Unit"/>
-            <class name="OMS.positive.Contact"/>
         </classes>
     </test>
 </suite>
