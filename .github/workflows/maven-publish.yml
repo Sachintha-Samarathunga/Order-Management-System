@@ -1,9 +1,9 @@
-name: Run TestNG Suite with Extent Report
+name: Run TestNG Test Suite - Test.xml
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '21 7 * * *'  # 12:48 PM IST
+    - cron: '30 7 * * *'  # 12:48 PM IST
 
 jobs:
   run-testng-tests:
@@ -27,14 +27,12 @@ jobs:
       - name: ▶️ Run TestNG Suite - Test.xml
         run: mvn clean test -DsuiteXmlFile=Test.xml
 
-      - name: 📂 List target folder contents (for debugging)
-        run: ls -R target
+      - name: 📂 List test-output folder contents (for debugging)
+        run: ls -l test-output
 
-      - name: 📤 Upload Extent Report and Screenshots
+      - name: 📤 Upload TestNG HTML Report
         uses: actions/upload-artifact@v4
         with:
-          name: extent-report
-          path: |
-            target/ExtentReport.html
-            target/screenshots/
+          name: testng-html-report
+          path: test-output
  
